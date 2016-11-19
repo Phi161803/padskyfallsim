@@ -44,7 +44,9 @@ public class Main {
 				for(int j=0; j < y-2; j++){
 					if(board[j][k][0] == board[j+1][k][0] && board[j][k][0] == board[j+2][k][0]){
 						if(board[j][k][1] == 0 && board[j+1][k][1] == 0 && board[j+2][k][1] == 0){
-							matches++;
+							if(k == 0 || ((board[j][k][0]!=board[j][k-1][0]||board[j][k-1][1]!=1)&&(board[j+1][k][0]!=board[j+1][k-1][0]||board[j+1][k-1][1]!=1)&&(board[j+2][k][0]!=board[j+2][k-1][0]||board[j+2][k-1][1]!=1))){
+								matches++;
+							} //fuck this if statement. fuck it so, so much
 						}
 						matched = true;
 						board[j][k][1] = board[j+1][k][1] = board[j+2][k][1] = 1;
@@ -55,7 +57,11 @@ public class Main {
 				for(int j=0; j < y; j++){
 					if(board[j][k][0] == board[j][k+1][0] && board[j][k][0] == board[j][k+2][0]){
 						if(board[j][k][1] == 0 && board[j][k+1][1] == 0 && board[j][k+2][1] == 0){
-							matches++;
+							if(j == 0 || ((board[j][k][0]!=board[j-1][k][0]||board[j-1][k][1]!=1)&&(board[j][k+1][0]!=board[j-1][k+1][0]||board[j-1][k+1][1]!=1)&&(board[j][k+2][0]!=board[j-1][k+2][0]||board[j-1][k+2][1]!=1))){
+								if(k < y-3 || board[j][k][0] != board[j][k+3][0] || board[j][k+3][1] == 0){
+									matches++;
+								}//and a right fuckoff to this bit in particular
+							} //fuck this one too
 						}
 						matched = true;
 						board[j][k][1] = board[j][k+1][1] = board[j][k+2][1] = 1;
